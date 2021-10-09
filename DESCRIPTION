@@ -1,0 +1,10 @@
+Package: dnddata
+Title: Dataset of D&D characters
+Version: 1.0.21.10.8
+Authors@R: person("Ogan", "Mancarci", email = "first.last@example.com", role = c("aut", "cre"))
+Description: A dataset of D&D characters submitted to https://oganm.github.io/printSheetApp and https://oganm.github.io/5eInteractiveSheet
+Depends: R (>= 3.4.4)
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
