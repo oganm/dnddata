@@ -180,7 +180,7 @@ charTable$countryCode = ipLocations$countryCode
 races = c(Aarakocra = '(Aarakocra)|(Birdfolk)',
 		  Aasimar = 'Aasimar',
 		  Bugbear= 'Bugbear',
-		  Dragonborn = 'Dragonborn',
+		  Dragonborn = '(Dragonborn)|(Chromatic)|(Metallic)|(Gem)',
 		  Dwarf = 'Dwarf|Warding',
 		  Elf = '(?<!Half-)Elf|Drow',
 		  Firbolg = 'Firbolg',
@@ -211,14 +211,17 @@ races = c(Aarakocra = '(Aarakocra)|(Birdfolk)',
 		  Warforged = 'Warforged|Envoy|Juggernaut|Juggeenaut',
 		  Changeling = 'Changeling',
 		  Shifter = '(Shifter)|(Hunt)|(Hide)|(Stride)|(Tooth)',
-		  Kalashtar = 'Kalashtar',
+		  Kalashtar = '(Kalashtar)|(Dreamtouched)',
 		  Eladrin = 'Eladrin',
 		  Leonin = '(Leonine)|(Leonin)',
-		  Satyr = 'Satyr')
+		  Satyr = 'Satyr',
+		  Custom = 'Custom')
 
 align = list(NG = c('ng',
 					'n,g',
+					"n.g",
 					'neatral good',
+					"neutra good",
 					'"good"',
 					'good',
 					'neuteral good',
@@ -240,6 +243,7 @@ align = list(NG = c('ng',
 					'neutral bueno',
 					'n. good'),
 			 CG = c('chaotic good',
+			 	   "chaotic good 👍",
 			 	   'chatoic good',
 			 	   'chaotic goo',
 			 	   'chaothic good',
@@ -252,6 +256,7 @@ align = list(NG = c('ng',
 			 	   'c/g',
 			 	   'good chaotic'),
 			 LG = c('lawful good',
+			 	   "lawful good boi",
 			 	   'l.g.',
 			 	   'laewful good',
 			 	   'lawful/good',
@@ -265,6 +270,7 @@ align = list(NG = c('ng',
 			 	   'legal good',
 			 	   'lb'),
 			 NN = c('neutral',
+			 	   "true nutral",
 			 	   'nn',
 			 	   'loyal neutral',
 			 	   'neutal',
@@ -282,6 +288,9 @@ align = list(NG = c('ng',
 			 	   'neutro',
 			 	   'true nuetral'),
 			 CN = c('chaotic neutral',
+			 	   "chaotic n",
+			 	   "chaotic nutral",
+			 	   "caotico e neutro",
 			 	   "c n",
 			 	   'chaotique neutre',
 			 	   'neutral caotico',
@@ -302,6 +311,8 @@ align = list(NG = c('ng',
 			 	   'caótico neutral',
 			 	   "тру хаотик"),
 			 LN = c('lawful neutral',
+			 	   "neutral lawful",
+			 	   "l n",
 			 	   'l.n',
 			 	   'lawful nuetral',
 			 	   'lawfull neutral',
@@ -315,6 +326,7 @@ align = list(NG = c('ng',
 			 	   'l/n',
 			 	   'lawful neutral (good-ish)'),
 			 NE = c('neutral evil','ne','n/e',
+			 	   "nuetral evil",
 			 	   'neutral malvado',
 			 	   'neutral maligno'),
 			 LE = c('lawful evil',
@@ -686,6 +698,7 @@ charTable %<>% mutate(alias = randomAlias[name])
 
 dnd_chars_all = charTable
 write_tsv(dnd_chars_all,path = here('data-raw/dnd_chars_all.tsv'))
+usethis::use_data(dnd_chars_all,overwrite = TRUE)
 
 
 # get unique table ----------------
@@ -762,7 +775,6 @@ getUniqueTable = function(charTable){
 
 # dnd_chars_all = read_tsv(here("data-raw/dnd_chars_all.tsv"),na = 'NA') # redundant
 
-usethis::use_data(dnd_chars_all,overwrite = TRUE)
 
 list[dnd_chars_unique,dnd_chars_singleclass,dnd_chars_multiclass] = getUniqueTable(dnd_chars_all)
 
